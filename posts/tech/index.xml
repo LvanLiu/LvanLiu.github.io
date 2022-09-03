@@ -5,6 +5,16 @@
     <link>https://lvanliu.github.io/posts/tech/</link>
     <description>Recent content in 💻 技术 on TechBeacon</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="https://lvanliu.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 03 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lvanliu.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单聊聊四种网络 IO 模型</title>
+      <link>https://lvanliu.github.io/posts/tech/io/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C-io-%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sat, 03 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lvanliu.github.io/posts/tech/io/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C-io-%E6%A8%A1%E5%9E%8B/</guid>
+      <description>说说网络的输入与输出 网络的输入与输出都涉及到内核与用户空间的数据拷贝，结合 TCP 的滑动窗口等缓冲的概念，重新审视网络下的输入与输出： 输入操作：等</description>
+    </item>
+    
   </channel>
 </rss>
