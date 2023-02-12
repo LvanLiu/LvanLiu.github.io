@@ -6,13 +6,22 @@
     <description>Recent content in Tags on TechBeacon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 03 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lvanliu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lvanliu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>技术</title>
-      <link>https://lvanliu.github.io/tags/%E6%8A%80%E6%9C%AF/</link>
-      <pubDate>Sat, 03 Sep 2022 00:00:00 +0000</pubDate>
+      <title>池化技术</title>
+      <link>https://lvanliu.github.io/tags/%E6%B1%A0%E5%8C%96%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://lvanliu.github.io/tags/%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://lvanliu.github.io/tags/%E6%B1%A0%E5%8C%96%E6%8A%80%E6%9C%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目经验</title>
+      <link>https://lvanliu.github.io/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lvanliu.github.io/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/</guid>
       <description></description>
     </item>
     

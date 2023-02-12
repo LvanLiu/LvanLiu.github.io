@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>简单聊聊四种网络 IO 模型 | TechBeacon</title>
-<meta name="keywords" content="技术, I/O">
+<meta name="keywords" content="I/O">
 <meta name="description" content="说说网络的输入与输出 网络的输入与输出都涉及到内核与用户空间的数据拷贝，结合 TCP 的滑动窗口等缓冲的概念，重新审视网络下的输入与输出： 输入操作：等">
 <meta name="author" content="lvan">
 <link rel="canonical" href="https://lvanliu.github.io/posts/tech/io/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C-io-%E6%A8%A1%E5%9E%8B/">
@@ -104,7 +104,7 @@
   "name": "简单聊聊四种网络 IO 模型",
   "description": "说说网络的输入与输出 网络的输入与输出都涉及到内核与用户空间的数据拷贝，结合 TCP 的滑动窗口等缓冲的概念，重新审视网络下的输入与输出： 输入操作：等",
   "keywords": [
-    "技术", "I/O"
+    "I/O"
   ],
   "articleBody": "说说网络的输入与输出 网络的输入与输出都涉及到内核与用户空间的数据拷贝，结合 TCP 的滑动窗口等缓冲的概念，重新审视网络下的输入与输出：\n输入操作：等待数据到达「接收缓存区」 输出操作：等待「发送缓存区」能够容纳输出的数据 数据从操作系统到应用程序，需要经过「内核态」到「用户态」的转换，那么一个网络请求包含以下两个阶段：\n准备阶段：等待数据到达「接收缓存区」或「发送缓存区」 拷贝阶段：数据从「内核态」到「用户态」或者反过来 阻塞式 I/O 阻塞式 I/O 表示应用程序读取数据的过程是处于阻塞状态的，比如读取 socket 数据，则需要等待操作系统从「接收缓存区」读到数据，随后系统将准备好的数据从「内核态」拷贝一份到「用户态」中，这个过程是阻塞的，也就是应用进程不能干其他活，只能干等。 阻塞式 I/O 的缺点就很明显了，每次发送读写应用程序进程都需要阻塞，无法进行其他任务操作。\n非阻塞式 I/O 既然阻塞式 I/O 会阻塞应用程序的进程，那非阻塞式 I/O 就通过「主动轮询」机制来解决这个问题，也就是应用程序进程在请求读数据时，系统调用就会返回一个错误信号（该信号并非真正错误，只是告诉应用程序数据未准备好）给应用程序，应用程序就会不断地进行轮询检查数据是否准备好。一旦「准备阶段」完成，系统接收到应用程序的请求，接着将准备好的数据从「内核态」拷贝到「用户态」中，以此完成读操作，在这个过程中，应用进程是阻塞的。 非阻塞式 I/O 虽然避免进程阻塞的情况，但是进程频繁轮询检查，引进了 CPU 利用率高等问题。\n多路 I/O 模型 多路 I/O 模型是基于阻塞式 I/O 模型下的优化，目的在于单进程支持处理多个 I/O 请求。多路 I/O 模型多新增了一个系统调用（select、poll、epoll）(下文将该系统调用称为「监听阶段」) 来负责监听可读写的事件。基于「监听阶段」的系统调用是阻塞的，也就是系统判断到某个 socket 可读写时，被阻塞在该系统调用的进程会被唤醒，接着就可以通过轮询或其他搜索的算法来找出该 socket，然后对该 socket 进行读写。 以读数据为例，在获取可读的 socket 时，应用程序会向系统请求数据，这时系统会将准备好的数据从「内核态」拷贝到「用户态」，以此完成读操作，在这个过程中，应用进程是阻塞的。 多路 I/O 复用通过引入 select 能够在单进程下处理多个 socket，比阻塞式 I/O、非阻塞式 I/O 拥有更高的性能，但式如果使用 select 模型则无法处理高并发的场景，因为它的连接数存在上限，默认是 1024，同时轮询会导致 CPU 使用率增高。\n异步 I/O 应用程序向系统发起读写请求，系统会立刻返回，然后应用进程就可以去做其他事情了，不需要阻塞等待。异步 I/O 是一个真正意义上的异步处理，相比 I/O 多路复用、非阻塞式 I/O 都是同步处理，而且 I/O 多路复用、非阻塞式 I/O 这两个模式都要主动请求系统内核，阻塞等待完成数据拷贝处理，而异步 I/O 不需要，系统内核会帮应用程序把数据从「内核态」拷贝到「用户态」，然后发一个信号给应用程序（告诉应用数据可读了），应用程序直接读取数据即可。 ",
   "wordCount" : "1189",
@@ -329,16 +329,22 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lvanliu.github.io/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
       <li><a href="https://lvanliu.github.io/tags/i/o/">I/O</a></li>
     </ul>
+<nav class="paginav">
+  <a class="prev" href="https://lvanliu.github.io/posts/tech/io/%E5%85%B3%E4%BA%8E-tomcat-%E7%A9%BA%E9%97%B2%E7%BA%BF%E7%A8%8B%E6%B2%A1%E6%9C%89%E9%87%8A%E6%94%BE%E7%9A%84%E6%8E%A2%E8%AE%A8/">
+    <span class="title">« </span>
+    <br>
+    <span>关于 Tomcat 空闲线程没有释放的探讨</span>
+  </a>
+</nav>
 
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://lvanliu.github.io/">TechBeacon</a></span>
+    <span>&copy; 2023 <a href="https://lvanliu.github.io/">TechBeacon</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
